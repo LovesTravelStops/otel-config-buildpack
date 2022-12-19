@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "OpenTelemetry Configuration"
+exit 0
