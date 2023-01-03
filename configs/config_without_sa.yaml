@@ -100,6 +100,10 @@ processors:
       - key: heroku.release.version
         action: insert
         value: ${env:HEROKU_RELEASE_VERSION}
+  filter:
+    traces:
+      span:
+        - 'IsMatch(attributes["db.statement"], ".*XREAD.*") == true'
 
   metricstransform/heroku:
     transforms:
@@ -165,6 +169,7 @@ service:
         - batch
         - attributes/heroku
         - attributes/update
+        - filter
       #- resource/add_environment
       exporters: [sapm, signalfx]
     metrics:
