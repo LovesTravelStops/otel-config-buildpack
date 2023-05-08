@@ -82,9 +82,6 @@ processors:
     actions:
       - key: db.connection_string
         action: delete
-      - key: service.namespace
-        action: insert
-        value: ${env:OTEL_SERVICE_NAMESPACE}
       - key: service.version
         action: insert
         value: ${env:HEROKU_SLUG_COMMIT}
