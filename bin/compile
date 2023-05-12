@@ -22,7 +22,7 @@ if [[ -s $ENV_DIR/SPLUNK_CONFIG ]]
 then
   SPLUNK_CONFIG=$(<"$ENV_DIR/SPLUNK_CONFIG")
 else
-  SPLUNK_CONFIG="$BUILD_DIR/.splunk/config_without_sa.yaml"
+  SPLUNK_CONFIG="$BUILD_DIR/.splunk/config_without_sa.json"
 fi
 
 echo "-----> Configuring OpenTelemetry"
@@ -33,7 +33,7 @@ if [[ ! -f $SPLUNK_CONFIG ]]
 then
   echo "       Copying Splunk OpenTelemetry config."
   mkdir -p $(dirname "$SPLUNK_CONFIG")
-  cp "$BP_DIR/configs/config_without_sa.yaml" "$SPLUNK_CONFIG"
+  cp "$BP_DIR/configs/config_without_sa.json" "$SPLUNK_CONFIG"
 else
   echo "       OpenTelemetry config already exists. Skipping copy."
 fi
@@ -43,4 +43,4 @@ fi
 echo "-----> Setting up profile"
 
 mkdir -p "$BUILD_DIR/.profile.d"
-cp "$BP_DIR/scripts/otel-config-buildpack-defaults.sh" "$BUILD_DIR/.profile.d/"
+cp "$BP_DIR/scripts/*" "$BUILD_DIR/.profile.d/"
