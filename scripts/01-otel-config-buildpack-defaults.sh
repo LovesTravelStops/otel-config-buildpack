@@ -7,5 +7,6 @@ echo "SPLUNK_REALM set to $SPLUNK_REALM"
 echo "SPLUNK_CONFIG set to $SPLUNK_CONFIG"
 
 if [[ -n $LOVES_OTEL_REDACTED_QUERY_PARAMS ]]
+then
   node setup-query-param-redaction.mjs
 fi
