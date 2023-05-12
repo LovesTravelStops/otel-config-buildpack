@@ -64,4 +64,4 @@ if (!config.processors.transform.trace_statements) {
 
 config.processors.transform.trace_statements.push(redactionTraceStatement);
 
-await writeFile(configPath, config);
+await writeFile(configPath, JSON.stringify(config, undefined, 2));
