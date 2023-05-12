@@ -43,4 +43,4 @@ fi
 echo "-----> Setting up profile"
 
 mkdir -p "$BUILD_DIR/.profile.d"
-cp "$BP_DIR/scripts/*" "$BUILD_DIR/.profile.d/"
+cp $BP_DIR/scripts/* "$BUILD_DIR/.profile.d/"
