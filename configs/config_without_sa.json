@@ -116,11 +116,6 @@
           "operations": [
             {
               "action": "add_label",
-              "new_label": "dyno_id",
-              "new_value": "${env:HEROKU_DYNO_ID}"
-            },
-            {
-              "action": "add_label",
               "new_label": "app_id",
               "new_value": "${env:HEROKU_APP_ID}"
             },
