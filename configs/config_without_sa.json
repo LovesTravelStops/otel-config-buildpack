@@ -2,7 +2,6 @@
   "config_sources": {
     "env": {
       "defaults": {
-        "HEROKU_DYNO_ID": "unset",
         "HEROKU_APP_ID": "unset",
         "HEROKU_APP_NAME": "unset"
       }
@@ -61,11 +60,6 @@
     },
     "attributes/heroku": {
       "actions": [
-        {
-          "action": "insert",
-          "key": "dyno_id",
-          "from_attribute": "host.name"
-        },
         {
           "action": "insert",
           "key": "app_id",
@@ -151,6 +145,15 @@
               "new_value": "${env:HEROKU_RELEASE_VERSION}"
             }
           ]
+        }
+      ]
+    },
+    "resource": {
+      "attributes": [
+        {
+          "key": "dyno_id",
+          "from_attribute": "host.name",
+          "action": "insert"
         }
       ]
     }
