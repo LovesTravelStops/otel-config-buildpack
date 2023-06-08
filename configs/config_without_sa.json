@@ -64,7 +64,7 @@
         {
           "action": "insert",
           "key": "dyno_id",
-          "value": "${env:HEROKU_DYNO_ID}"
+          "from_attribute": "host.name"
         },
         {
           "action": "insert",
