@@ -179,7 +179,8 @@
           "batch",
           "attributes/heroku",
           "attributes/update",
-          "filter"
+          "filter",
+          "resource"
         ],
         "exporters": ["sapm", "signalfx"]
       },
