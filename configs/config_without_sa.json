@@ -88,6 +88,11 @@
     "logging": { "loglevel": "debug" }
   },
   "service": {
+    "telemetry": {
+      "logs": {
+        "encoding": "json"
+      }
+    },
     "pipelines": {
       "traces": {
         "receivers": ["otlp"],
