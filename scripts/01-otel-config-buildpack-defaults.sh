@@ -10,3 +10,5 @@ if [[ -n $LOVES_OTEL_REDACTED_QUERY_PARAMS ]]
 then
   $HOME/.heroku/node/bin/node $HOME/.profile.d/setup-query-param-redaction.mjs
 fi
+
+export HOSTNAME=${HOSTNAME:-$(hostname)}
