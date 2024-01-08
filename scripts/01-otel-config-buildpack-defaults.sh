@@ -12,3 +12,4 @@ then
 fi
 
 export HOSTNAME=${HOSTNAME:-$(hostname)}
+echo "HOSTNAME set to $HOSTNAME"
