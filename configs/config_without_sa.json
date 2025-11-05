@@ -90,6 +90,9 @@
     "telemetry": {
       "logs": {
         "encoding": "json"
+      },
+      "metrics": {
+        "level": "none"
       }
     },
     "pipelines": {
