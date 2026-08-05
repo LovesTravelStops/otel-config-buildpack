@@ -80,9 +80,11 @@
     }
   },
   "exporters": {
-    "sapm": {
-      "access_token": "${SPLUNK_ACCESS_TOKEN}",
-      "endpoint": "${SPLUNK_TRACE_URL}"
+    "otlphttp": {
+      "traces_endpoint": "${SPLUNK_INGEST_URL}/v2/trace/otlp",
+      "headers": {
+        "X-SF-Token": "${SPLUNK_ACCESS_TOKEN}"
+      }
     },
     "debug": { "verbosity": "detailed" }
   },
@@ -106,7 +108,7 @@
           "filter",
           "resource"
         ],
-        "exporters": ["sapm"]
+        "exporters": ["otlphttp"]
       }
     }
   }
