@@ -64,6 +64,21 @@
         }
       ]
     },
+    "attributes/metrics": {
+      "actions": [
+        {
+          "key": "heroku.dyno.name",
+          "action": "insert",
+          "value": "${env:DYNO}"
+        },
+        {
+          "key": "heroku.dyno.name",
+          "action": "extract",
+          "pattern": "^(?P<dyno_type>[^.]+)"
+        },
+        { "key": "heroku.dyno.name", "action": "delete" }
+      ]
+    },
     "filter": {
       "traces": {
         "span": ["IsMatch(attributes[\"db.statement\"], \".*XREAD.*\") == true"]
@@ -77,11 +92,23 @@
           "action": "insert"
         }
       ]
+    },
+    "resource/metrics": {
+      "attributes": [
+        { "key": "host.id", "action": "delete" },
+        { "key": "host.name", "action": "delete" },
+        { "key": "process.command", "action": "delete" },
+        { "key": "process.command_args", "action": "delete" },
+        { "key": "process.executable.path", "action": "delete" },
+        { "key": "process.owner", "action": "delete" },
+        { "key": "process.pid", "action": "delete" }
+      ]
     }
   },
   "exporters": {
     "otlphttp": {
       "traces_endpoint": "${SPLUNK_INGEST_URL}/v2/trace/otlp",
+      "metrics_endpoint": "${SPLUNK_INGEST_URL}/v2/datapoint/otlp",
       "headers": {
         "X-SF-Token": "${SPLUNK_ACCESS_TOKEN}"
       }
@@ -107,6 +134,17 @@
           "attributes/update",
           "filter",
           "resource"
+        ],
+        "exporters": ["otlphttp"]
+      },
+      "metrics": {
+        "receivers": ["otlp"],
+        "processors": [
+          "memory_limiter",
+          "batch",
+          "attributes/heroku",
+          "attributes/metrics",
+          "resource/metrics"
         ],
         "exporters": ["otlphttp"]
       }
